@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('DarkerGrotesque-Regular.eot');
+    src: local('Darker Grotesque Regular'), local('DarkerGrotesque-Regular'),
+        url('DarkerGrotesque-Regular.eot?#iefix') format('embedded-opentype'),
+        url('DarkerGrotesque-Regular.woff2') format('woff2'),
+        url('DarkerGrotesque-Regular.woff') format('woff'),
+        url('DarkerGrotesque-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('DarkerGrotesque-Black.eot');
+    src: local('Darker Grotesque Black'), local('DarkerGrotesque-Black'),
+        url('DarkerGrotesque-Black.eot?#iefix') format('embedded-opentype'),
+        url('DarkerGrotesque-Black.woff2') format('woff2'),
+        url('DarkerGrotesque-Black.woff') format('woff'),
+        url('DarkerGrotesque-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('DarkerGrotesque-SemiBold.eot');
+    src: local('Darker Grotesque SemiBold'), local('DarkerGrotesque-SemiBold'),
+        url('DarkerGrotesque-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('DarkerGrotesque-SemiBold.woff2') format('woff2'),
+        url('DarkerGrotesque-SemiBold.woff') format('woff'),
+        url('DarkerGrotesque-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('DarkerGrotesque-ExtraBold.eot');
+    src: local('Darker Grotesque ExtraBold'), local('DarkerGrotesque-ExtraBold'),
+        url('DarkerGrotesque-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('DarkerGrotesque-ExtraBold.woff2') format('woff2'),
+        url('DarkerGrotesque-ExtraBold.woff') format('woff'),
+        url('DarkerGrotesque-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('DarkerGrotesque-Bold.eot');
+    src: local('Darker Grotesque Bold'), local('DarkerGrotesque-Bold'),
+        url('DarkerGrotesque-Bold.eot?#iefix') format('embedded-opentype'),
+        url('DarkerGrotesque-Bold.woff2') format('woff2'),
+        url('DarkerGrotesque-Bold.woff') format('woff'),
+        url('DarkerGrotesque-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('DarkerGrotesque-Light.eot');
+    src: local('Darker Grotesque Light'), local('DarkerGrotesque-Light'),
+        url('DarkerGrotesque-Light.eot?#iefix') format('embedded-opentype'),
+        url('DarkerGrotesque-Light.woff2') format('woff2'),
+        url('DarkerGrotesque-Light.woff') format('woff'),
+        url('DarkerGrotesque-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Darker Grotesque';
+    src: url('DarkerGrotesque-Medium.eot');
+    src: local('Darker Grotesque Medium'), local('DarkerGrotesque-Medium'),
+        url('DarkerGrotesque-Medium.eot?#iefix') format('embedded-opentype'),
+        url('DarkerGrotesque-Medium.woff2') format('woff2'),
+        url('DarkerGrotesque-Medium.woff') format('woff'),
+        url('DarkerGrotesque-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+

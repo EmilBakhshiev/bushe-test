@@ -1,7 +1,29 @@
-.header{
-    max-width: 100%;
-    background-color: white;
-    padding: 10px;
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  max-width: 100%;
+  background-color: white;
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+  -moz-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+  box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+  padding: 10px 30px;
 }
-.header__logo{
+.header__logo {
+  margin-right: 500px;
+}
+.header__btn {
+  width: 100px;
+  background-color: transparent;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid gainsboro;
+  border-radius: 8px;
+  transition: all 0.4s ease;
+}
+.header__btn:hover {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
 }

@@ -1,91 +1,88 @@
 import React from 'react';
+import { columnArray } from '../../utils/utils';
+import { useEffect, useState } from 'react';
 
-function Main({ colomun, data, getCurrentTimeFromStamp, handleNumberClick }) {
+function Main({ colomun, data }) {
+  const [historyCall, setHistoryCall] = useState([]);
+  const [isOpened, setIsOpened] = useState(false);
+  
 
+  function handleNumberClick(phone) {
+    setHistoryCall(data.filter((elm) => elm[0] === phone));
+    setIsOpened(true);
+  }
+ 
+
+  function getCurrentTimeFromStamp(timestamp) {
+    return new Date(timestamp * 1000).toLocaleString();
+  }
+   
   return (
     <main>
       <table>
         <thead>
           <tr>
-            {colomun.map((item) => {
-              return <th>{item}</th>;
+            {columnArray.map((el) => {
+              return <th className='table__head'>{el}</th>;
             })}
-            <th>Подробнее</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th colSpan='5'>Буше есть настоящее</th>
+            <th colSpan='6'>Буше есть настоящее</th>
           </tr>
         </tfoot>
         <tbody>
           {data.map((item) => {
             return (
               <tr>
-                <td className='col__number' onClick={handleNumberClick}>
+                <td
+                  className='col__number'
+                  onClick={() => handleNumberClick(item[0])}
+                >
                   {item[0]}
                 </td>
                 <td>{getCurrentTimeFromStamp(item[1])}</td>
                 <td>{item[2]}</td>
                 <td>{item[3]}</td>
                 <td>{item[4]}</td>
-                <td className='select'>
-                  <a className='button' href='#'>
-                    Select
-                  </a>
-                </td>
               </tr>
             );
           })}
-
-          <tr>
-            <td>Julius Neumann</td>
-            <td>e-mail@test-email.com</td>
-          </tr>
-          <tr>
-            <td>Christoph Koller</td>
-            <td>e-mail@test-email.com</td>
-            <td className='select'>
-              <a className='button' href='#'>
-                Select
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>Bram Lemmens</td>
-            <td>e-mail@test-email.com</td>
-            <td className='select'>
-              <a className='button' href='#'>
-                Select
-              </a>
-            </td>
-          </tr>
         </tbody>
       </table>
-      <div className='detail'>
+      <div className={`detail ${isOpened && 'detail_opened'}`} >
         <div className='detail-container'>
           <dl>
-            <dt>Provider Name</dt>
-            <dd>John Doe</dd>
-            <dt>E-mail</dt>
-            <dd>email@example.com</dd>
-            <dt>City</dt>
-            <dd>Detroit</dd>
-            <dt>Phone-Number</dt>
-            <dd>555-555-5555</dd>
-            <dt>Last Update</dt>
-            <dd>Jun 20 2014</dd>
-            <dt>Notes</dt>
-            <dd>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-              odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-              turpis. Suspendisse urna nibh, viverra non, semper suscipit,
-              posuere a, pede.
-            </dd>
+            <dt>История звонков номера:</dt>
+            <dd>{historyCall.map((arr) => arr[0])[0]}</dd>
           </dl>
+          <table>
+            <tbody>
+              {historyCall.map((item) => {
+                return (
+                  <tr>
+                    <td className='history-call__row'>
+                      {getCurrentTimeFromStamp(item[1])}
+                    </td>
+                    <td className='history-call__row'>{item[2]}</td>
+                    <td className='history-call__row'>{item[3]}</td>
+                    <td className='history-call__row'>{item[4]}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
         <div className='detail-nav'>
-          <button className='close'>Close</button>
+          <button
+            className='close'
+            onClick={() => {
+              setIsOpened(false);
+            }}
+          >
+            Закрыть
+          </button>
         </div>
       </div>
     </main>

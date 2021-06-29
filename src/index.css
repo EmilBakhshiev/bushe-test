@@ -1,6 +1,11 @@
 @import url(./vendors/normalize.css);
+@import url(./vendors/fonts/Grotesque/stylesheet.css);
 @import url(./components/Header/Header.css);
 @import url(./components/Main/Main.css);
+@import url(./components/Statistics/Statistics.css);
+@import url(./components/Table/Table.css);
+@import url(./components/StatisticsCard/StatisticsCard.css);
+
  * {
 	 box-sizing: border-box;
 }
@@ -9,16 +14,16 @@
 	 overflow: hidden;
 }
  html {
-
 	 font-size: 62.5%;
 }
  body {
-	 background-color: #5bb9b8;
+	 background-color: #f1f1f1;;
 	 line-height: 1.6;
 	 -webkit-font-smoothing: antialiased;
 	 color: #fff;
 	 font-size: 1.6rem;
 	 font-family: 'Lato', sans-serif;
+	 font-weight: 300;
 }
  p {
 	 text-align: center;
@@ -61,6 +66,9 @@
  th {
 	 font-weight: 700;
 }
+.table__head{
+	
+}
  thead th {
 	 background-color: #202932;
 	 color: #fff;
@@ -72,25 +80,10 @@
 	 text-align: center;
 	 color: #b8c4d2;
 }
- .button {
-	 line-height: 1;
-	 display: inline-block;
-	 font-size: 1.2rem;
-	 text-decoration: none;
-	 border-radius: 5px;
-	 color: #fff;
-	 padding: 8px;
-	 background-color: #4b908f;
-}
- .select {
-	 padding-bottom: 20px;
-	 border-bottom: 1px solid #28333f;
-}
- .select:before {
-	 display: none;
-}
  .detail {
-	 background-color: #bd2a4e;
+	 background-color: #5bb9b8;
+	 visibility: hidden;
+	 opacity: 0;
 	 width: 100%;
 	 height: 100%;
 	 padding: 40px 0;
@@ -98,12 +91,20 @@
 	 top: 0;
 	 left: 0;
 	 overflow: auto;
-   display: none;
+	 display: flex;
+	 transition: all .2s linear;
+}
+
+.detail_opened{
+	display: flex;
+    visibility: visible;
+    opacity: 1;
+    transition: all .2s linear;
 }
  .detail-container {
 	 margin: 0 auto;
 	 padding: 40px;
-	 max-width: 500px;
+	 width: 90%;
 }
  dl {
 	 margin: 0;
@@ -117,8 +118,8 @@
 	 margin: 0 0 40px 0;
 	 font-size: 1.8rem;
 	 padding-bottom: 5px;
-	 border-bottom: 1px solid #ac2647;
-	 box-shadow: 0 1px 0 #c52c51;
+	 border-bottom: 1px solid #509998;
+	 box-shadow: 0 1px 0 #5bb9b8;
 }
  .close {
 	 background: none;
@@ -133,9 +134,13 @@
 	 right: 40px;
 	 top: 20px;
 }
+.history-call__row{
+  background-color: transparent;
+ border-bottom:  1px solid #509998;
+}
  .close:hover, .close:focus {
-	 background-color: #a82545;
-	 border: 1px solid #a82545;
+	 background-color: #449c99;
+	 border: 1px solid #449c99;
 }
  @media (min-width: 460px) {
 	 td {
@@ -181,6 +186,10 @@
 	 tr:nth-child(2n+2) td {
 		 background-color: #242e39;
 	}
+  .history-call__row:nth-child(2n+2){
+    background-color: transparent;
+    border-bottom: 1px solid #509998;
+  }
 	 tfoot th {
 		 display: table-cell;
 	}
