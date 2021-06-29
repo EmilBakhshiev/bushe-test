@@ -5,9 +5,9 @@ function Header({statisticsModal}) {
  
   return (
     <header className='header'>
-      <img src={logo} className='header__logo' alt='Логотип'></img>
-      <button className='header__btn' onClick={statisticsModal}>Cтатистика</button>
-      <button className='header__btn'>Выйти</button>
+      <img src={logo} className='header__logo' alt='Логотип' />
+      <button className='btn' onClick={statisticsModal}>Cтатистика</button>
+      <button className='btn'>Выйти</button>
     </header>
   );
 }

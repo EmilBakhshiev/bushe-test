@@ -1,1 +1,16 @@
+.app {
+  background-color: #f1f1f1;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  font-size: 1.6rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+* {
+  box-sizing: border-box;
+}
 
+html {
+  font-size: 62.5%;
+}

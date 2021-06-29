@@ -3,6 +3,7 @@ import { DataContext } from '../../contexts/DataContext';
 import callIcon from '../../images/call-icon.png';
 import timeIcon from '../../images/time-icon.png';
 import StatisticsCard from '../StatisticsCard/StatisticsCard';
+import StatisticTable from '../StatisticsTable/StatisticTable';
 
 function Statistics({ isOpen, onClose }) {
   const [idFiltered, setIdFiltered] = useState([]);
@@ -16,17 +17,26 @@ function Statistics({ isOpen, onClose }) {
   }
   function getMaxWait() {
     const arr = data.map((el) => el[2]);
-    return Math.min.apply(null, arr);
+    return Math.max.apply(null, arr);
   }
 
   function handleIdFilter(id) {
-    setIdFiltered(data.filter((elm) => elm[4] === id));
+    setIdFiltered(data.filter((elm) => elm[4] === Number(id)));
     setIsOpened(true);
   }
+  
+  function getUniqueItem(index){
+    const arrId = data.map((item)=>item[index]);
+    const uniqueSet = new Set(arrId);
+    return [...uniqueSet]
+  }
+  function handleChange(e) {
+    setValue(e.target.value)
+  }
+  
   function getCurrentTimeFromStamp(timestamp) {
     return new Date(timestamp * 1000).toLocaleString();
   }
-  
 
   return (
     <section className={`statistics ${isOpen && 'statistics_opened'}`}>
@@ -35,7 +45,7 @@ function Statistics({ isOpen, onClose }) {
       </button>
 
       <div className='statistics__container'>
-        <h2 className='statistics__title'>Статистика</h2>
+        <h2 className='statistics__header'>Статистика</h2>
         <div className='statistics__card-wrapper'>
           <StatisticsCard
             icon={callIcon}
@@ -50,36 +60,21 @@ function Statistics({ isOpen, onClose }) {
           <StatisticsCard
             icon={timeIcon}
             data={getMaxWait()}
-            text='секунда самое короткое время ожидания'
+            text='секунд самое длинное время ожидания ответа'
           />
         </div>
-        <label className='label__input'>
-          id оператора, принявшего звонок
-          <input
-            type='number'
-            onChange={(e) => setValue(e.target.value)}
-          ></input>
-        </label>
-        <button onClick={() => handleIdFilter(value)}>Показать</button>
-        {/*
-            <table>
-            <tbody>
-              {idFiltered.map((item) => {
-                return (
-                  <tr>
-                    <td className='history-call__row'>
-                      {getCurrentTimeFromStamp(item[1])}
-                    </td>
-                    <td className='history-call__row'>{item[2]}</td>
-                    <td className='history-call__row'>{item[3]}</td>
-                    <td className='history-call__row'>{item[4]}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-            */}
-          
+        <h3 className='statistics__title'>id оператора, принявшего звонок</h3>
+        <div>
+        <select className='statistics__select' defaultValue={value} onChange={handleChange}>
+          {getUniqueItem(4).map((item)=>{
+            return (
+              <option key={item} value={item}>{item}</option>
+            )
+          })}
+        </select>
+        <button className='btn' onClick={() => handleIdFilter(value)}>Показать</button>
+        </div>
+        {isOpened ? (<StatisticTable key={idFiltered} idFiltered={idFiltered} getCurrentTimeFromStamp={getCurrentTimeFromStamp} />) : ''}
       </div>
     </section>
   );

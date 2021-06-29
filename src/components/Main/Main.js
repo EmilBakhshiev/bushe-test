@@ -1,44 +1,38 @@
 import React from 'react';
 import { columnArray } from '../../utils/utils';
-import { useEffect, useState } from 'react';
+import HistoryCall from '../HistoryCall/HistoryCall';
 
-function Main({ colomun, data }) {
-  const [historyCall, setHistoryCall] = useState([]);
-  const [isOpened, setIsOpened] = useState(false);
-  
-
-  function handleNumberClick(phone) {
-    setHistoryCall(data.filter((elm) => elm[0] === phone));
-    setIsOpened(true);
-  }
- 
-
-  function getCurrentTimeFromStamp(timestamp) {
-    return new Date(timestamp * 1000).toLocaleString();
-  }
-   
+function Main({
+  paginationData,
+  paginationBtns,
+  historyCallOpened,
+  historyCall,
+  setIsOpened,
+  getCurrentTimeFromStamp,
+}) {
   return (
-    <main>
+    <main className='main'>
       <table>
         <thead>
           <tr>
-            {columnArray.map((el) => {
-              return <th className='table__head'>{el}</th>;
+            {columnArray.map((el, index) => {
+              return <th  key={index} className='table__head'>{el}</th>;
             })}
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th colSpan='6'>Буше есть настоящее</th>
+            <th colSpan='6'>{paginationBtns}</th>
           </tr>
         </tfoot>
         <tbody>
-          {data.map((item) => {
+          {paginationData}
+          {/*data.map((item) => {
             return (
               <tr>
                 <td
                   className='col__number'
-                  onClick={() => handleNumberClick(item[0])}
+                  onClick={() => handlePhoneClick(item[0])}
                 >
                   {item[0]}
                 </td>
@@ -48,43 +42,15 @@ function Main({ colomun, data }) {
                 <td>{item[4]}</td>
               </tr>
             );
-          })}
+          })*/}
         </tbody>
       </table>
-      <div className={`detail ${isOpened && 'detail_opened'}`} >
-        <div className='detail-container'>
-          <dl>
-            <dt>История звонков номера:</dt>
-            <dd>{historyCall.map((arr) => arr[0])[0]}</dd>
-          </dl>
-          <table>
-            <tbody>
-              {historyCall.map((item) => {
-                return (
-                  <tr>
-                    <td className='history-call__row'>
-                      {getCurrentTimeFromStamp(item[1])}
-                    </td>
-                    <td className='history-call__row'>{item[2]}</td>
-                    <td className='history-call__row'>{item[3]}</td>
-                    <td className='history-call__row'>{item[4]}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-        <div className='detail-nav'>
-          <button
-            className='close'
-            onClick={() => {
-              setIsOpened(false);
-            }}
-          >
-            Закрыть
-          </button>
-        </div>
-      </div>
+      <HistoryCall
+        isOpened={historyCallOpened}
+        historyCall={historyCall}
+        getCurrentTimeFromStamp={getCurrentTimeFromStamp}
+        setIsOpened={setIsOpened}
+      />
     </main>
   );
 }

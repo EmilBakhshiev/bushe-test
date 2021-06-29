@@ -1,0 +1,7 @@
+.detail__phone{
+    color: rgb(124, 121, 121);
+    margin: 0 0 40px 0;
+    font-size: 1.8rem;
+    padding-bottom: 5px;
+    border-bottom: 1px solid darkgrey;
+}
