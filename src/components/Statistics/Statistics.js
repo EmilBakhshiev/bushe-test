@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback, useEffect } from 'react';
 import { DataContext } from '../../contexts/DataContext';
 import callIcon from '../../images/call-icon.png';
 import timeIcon from '../../images/time-icon.png';
@@ -7,10 +7,10 @@ import StatisticTable from '../StatisticsTable/StatisticTable';
 import logo from '../../images/logo.svg';
 
 function Statistics({ isOpen, onClose, getCurrentTimeFromStamp }) {
+  const data = useContext(DataContext);
   const [idFiltered, setIdFiltered] = useState([]);
   const [isOpened, setIsOpened] = useState(false);
-  const [value, setValue] = useState(Number);
-  const data = useContext(DataContext);
+  const [selectValue, setSelectValue] = useState(0);
 
   function getMaxNumCall() {
     const arr = data.map((el) => el[3]);
@@ -25,27 +25,32 @@ function Statistics({ isOpen, onClose, getCurrentTimeFromStamp }) {
     setIdFiltered(data.filter((elm) => elm[4] === Number(id)));
     setIsOpened(true);
   }
-  
-  function getUniqueItem(index){
-    const arrId = data.map((item)=>item[index]);
-    const uniqueSet = new Set(arrId);
-    return [...uniqueSet]
+  const getUniqueItem = useCallback(
+    (index) => {
+      const arrId = data.map((item) => item[index]);
+      const uniqueSet = new Set(arrId);
+      return [...uniqueSet];
+    },
+    [data]
+  );
+
+  useEffect(() => {
+    getUniqueItem(4);
+    setSelectValue(getUniqueItem(4)[0]);
+  }, [getUniqueItem]);
+
+  function handleSelectChange(e) {
+    setSelectValue(e.target.value);
   }
-  function handleChange(e) {
-    setValue(e.target.value)
-  }
-  
+
   return (
     <section className={`detail ${isOpen && 'detail_opened'}`}>
       <div className='detail-nav'>
-          <img src={logo} alt='Логотип'/>
-        <button
-          className='btn'
-          onClick={onClose}
-        >
+        <img src={logo} alt='Логотип' />
+        <button className='btn' onClick={onClose}>
           Закрыть
         </button>
-        </div>
+      </div>
       <div className='detail-container'>
         <h2 className='detail__header'>Статистика</h2>
         <div className='detail__card-wrapper'>
@@ -67,16 +72,32 @@ function Statistics({ isOpen, onClose, getCurrentTimeFromStamp }) {
         </div>
         <h3 className='statistics__title'>id оператора, принявшего звонок</h3>
         <div className='detail__wrapper-filter'>
-        <select className='statistics__select' defaultValue={value} onChange={handleChange}>
-          {getUniqueItem(4).map((item, index)=>{
-            return (
-              <option key={index} value={item}>{item}</option>
-            )
-          })}
-        </select>
-        <button className='btn' onClick={() => handleIdFilter(value)}>Показать</button>
+          <select
+            className='statistics__select'
+            defaultValue={selectValue}
+            onChange={handleSelectChange}
+          >
+            {getUniqueItem(4).map((item, index) => {
+              return (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              );
+            })}
+          </select>
+          <button className='btn' onClick={() => handleIdFilter(selectValue)}>
+            Показать
+          </button>
         </div>
-        {isOpened ? (<StatisticTable key={idFiltered} idFiltered={idFiltered} getCurrentTimeFromStamp={getCurrentTimeFromStamp} />) : ''}
+        {isOpened ? (
+          <StatisticTable
+            key={idFiltered}
+            idFiltered={idFiltered}
+            getCurrentTimeFromStamp={getCurrentTimeFromStamp}
+          />
+        ) : (
+          ''
+        )}
       </div>
     </section>
   );
