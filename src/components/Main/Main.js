@@ -12,11 +12,11 @@ function Main({
 }) {
   return (
     <main className='main'>
-      <table>
+      <table className='table table_type_main'>
         <thead>
           <tr>
             {columnArray.map((el, index) => {
-              return <th  key={index} className='table__head'>{el}</th>;
+              return <th  key={index} className='table__head table__head_place_main'>{el}</th>;
             })}
           </tr>
         </thead>
@@ -27,22 +27,6 @@ function Main({
         </tfoot>
         <tbody>
           {paginationData}
-          {/*data.map((item) => {
-            return (
-              <tr>
-                <td
-                  className='col__number'
-                  onClick={() => handlePhoneClick(item[0])}
-                >
-                  {item[0]}
-                </td>
-                <td>{getCurrentTimeFromStamp(item[1])}</td>
-                <td>{item[2]}</td>
-                <td>{item[3]}</td>
-                <td>{item[4]}</td>
-              </tr>
-            );
-          })*/}
         </tbody>
       </table>
       <HistoryCall

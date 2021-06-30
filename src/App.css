@@ -14,3 +14,44 @@
 html {
   font-size: 62.5%;
 }
+
+.modal-table__row {
+  border-bottom: 1px solid darkgrey;
+  padding: 10px;
+  color: rgb(124, 121, 121);
+}
+.modal-table__head{
+  text-align: left;
+  border-bottom: 1px solid darkgrey;
+  padding: 10px;
+  font-weight: 300;
+  font-size: 20px;
+  color: rgb(124, 121, 121);
+}
+
+.table {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table_type_main{
+  border-collapse: separate;
+}
+
+.table__head{
+  padding: 10px;
+  font-weight: 300;
+}
+.table__head_place_main{
+  background-color: #242e39;
+}
+.table__data-main{
+  border: 1px solid #28333f;
+  padding: 10px;
+}
+
+.table__row-main:nth-child(2n + 2) td {
+  background-color: #242e39;
+}
+

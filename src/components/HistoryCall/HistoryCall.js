@@ -10,8 +10,9 @@ function HistoryCall({
   return (
     <div className={`detail ${isOpened && 'detail_opened'}`}>
       <div className='detail-nav'>
+          <img src={logo} alt='Логотип'/>
         <button
-          className='close'
+          className='btn'
           onClick={() => {
             setIsOpened(false);
           }}
@@ -24,11 +25,11 @@ function HistoryCall({
           <dt className='detail__title'>История звонков номера:</dt>
           <dd className='detail__phone'>{historyCall.map((arr) => arr[0])[0]}</dd>
         </dl>
-        <table>
+        <table className='table'>
           <tbody>
-            {historyCall.map((item) => {
+            {historyCall.map((item, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td className='modal-table__row'>
                     {getCurrentTimeFromStamp(item[1])}
                   </td>

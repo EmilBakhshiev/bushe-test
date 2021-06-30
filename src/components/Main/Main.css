@@ -1,16 +1,13 @@
 .main {
     background-color: #2c3845;
 }
-.col__number{
+.phone{
     cursor: pointer;
+	transition: all .3s linear;
 }
-.opened{
-    display: flex;
-    visibility: visible;
-    opacity: 1;
-    transition: all .3s linear;
+.phone:hover{
+	opacity: .6;
 }
-
 
 .pagination {
 	margin: 15px auto;

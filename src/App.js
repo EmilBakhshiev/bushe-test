@@ -29,16 +29,16 @@ function App() {
 
   const displayData = data
     .slice(pagesVisited, pagesVisited + dataPerPage)
-    .map((item) => {
+    .map((item, index) => {
       return (
-        <tr>
-          <td className='col__number' onClick={() => handlePhoneClick(item[0])}>
+        <tr className='table__row-main' key={index}>
+          <td className='table__data-main phone' onClick={() => handlePhoneClick(item[0])}>
             {item[0]}
           </td>
-          <td>{getCurrentTimeFromStamp(item[1])}</td>
-          <td>{item[2]}</td>
-          <td>{item[3]}</td>
-          <td>{item[4]}</td>
+          <td className='table__data-main'>{getCurrentTimeFromStamp(item[1])}</td>
+          <td className='table__data-main'>{item[2]}</td>
+          <td className='table__data-main'>{item[3]}</td>
+          <td className='table__data-main'>{item[4]}</td>
         </tr>
       );
     });
@@ -86,7 +86,7 @@ function App() {
             />
           }
         />
-        <Statistics onClose={closeAllModals} isOpen={isStatisticsModal} />
+        <Statistics getCurrentTimeFromStamp={getCurrentTimeFromStamp} onClose={closeAllModals} isOpen={isStatisticsModal} />
       </DataContext.Provider>
     </div>
   );

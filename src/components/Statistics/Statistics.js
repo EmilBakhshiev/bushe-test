@@ -4,8 +4,9 @@ import callIcon from '../../images/call-icon.png';
 import timeIcon from '../../images/time-icon.png';
 import StatisticsCard from '../StatisticsCard/StatisticsCard';
 import StatisticTable from '../StatisticsTable/StatisticTable';
+import logo from '../../images/logo.svg';
 
-function Statistics({ isOpen, onClose }) {
+function Statistics({ isOpen, onClose, getCurrentTimeFromStamp }) {
   const [idFiltered, setIdFiltered] = useState([]);
   const [isOpened, setIsOpened] = useState(false);
   const [value, setValue] = useState(Number);
@@ -34,19 +35,20 @@ function Statistics({ isOpen, onClose }) {
     setValue(e.target.value)
   }
   
-  function getCurrentTimeFromStamp(timestamp) {
-    return new Date(timestamp * 1000).toLocaleString();
-  }
-
   return (
-    <section className={`statistics ${isOpen && 'statistics_opened'}`}>
-      <button className='close' onClick={onClose}>
-        Закрыть
-      </button>
-
-      <div className='statistics__container'>
-        <h2 className='statistics__header'>Статистика</h2>
-        <div className='statistics__card-wrapper'>
+    <section className={`detail ${isOpen && 'detail_opened'}`}>
+      <div className='detail-nav'>
+          <img src={logo} alt='Логотип'/>
+        <button
+          className='btn'
+          onClick={onClose}
+        >
+          Закрыть
+        </button>
+        </div>
+      <div className='detail-container'>
+        <h2 className='detail__header'>Статистика</h2>
+        <div className='detail__card-wrapper'>
           <StatisticsCard
             icon={callIcon}
             data={data.length}
@@ -64,11 +66,11 @@ function Statistics({ isOpen, onClose }) {
           />
         </div>
         <h3 className='statistics__title'>id оператора, принявшего звонок</h3>
-        <div>
+        <div className='detail__wrapper-filter'>
         <select className='statistics__select' defaultValue={value} onChange={handleChange}>
-          {getUniqueItem(4).map((item)=>{
+          {getUniqueItem(4).map((item, index)=>{
             return (
-              <option key={item} value={item}>{item}</option>
+              <option key={index} value={item}>{item}</option>
             )
           })}
         </select>
